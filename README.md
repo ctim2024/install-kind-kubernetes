@@ -35,6 +35,7 @@ kind create cluster --config cluster-config.yaml
    kubectl apply -f dashboard-clusterrole.yaml -n kubernetes-dashboard
    kubectl apply -f dashboard-secret.yaml -n kubernetes-dashboard
    kubectl apply -f dashboard-nodeport.yaml -n kubernetes-dashboard
+   kubectl apply -f ingress-dashboard.yaml -n kubernetes-dashboard
    #execute on git bash :
    kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
 ```
