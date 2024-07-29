@@ -12,6 +12,21 @@ choco install kind
 kind create cluster --config cluster-config.yaml
 ```
 
+## Install ingress (Optional)
+
+```bash
+   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+   
+```
+
+```bash
+     kubectl edit deployment ingress-nginx-controller -n ingress-nginx
+
+       delete this section :
+                            nodeSelector:
+                              ingress-ready: "true"
+```
+
 ## Install dashboard (Optional)
 
 ```bash
@@ -24,12 +39,3 @@ kind create cluster --config cluster-config.yaml
    kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
 ```
 
-## Install ingress (Optional)
-
-```bash
-   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-   kubectl edit deployment ingress-nginx-controller -n ingress-nginx
-```
-   delete this section :
-                         nodeSelector:
-                             ingress-ready: "true"
